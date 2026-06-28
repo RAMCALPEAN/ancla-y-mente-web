@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancla y Mente — Terapia online con 4 psicólogos que sí te entienden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fdf8f1;
+    --cream-2:#f9efe1;
+    --mustard:#e0a23c;
+    --mustard-dark:#c4862a;
+    --terra:#cf6b4a;
+    --terra-dark:#b3563a;
+    --sage:#7fa389;
+    --sage-deep:#5d8369;
+    --mauve:#9b7aa6;
+    --plum:#5a3f63;
+    --ink:#3a2f2a;
+    --muted:#7a6b60;
+    --line:#efe2d1;
+    --radius:24px;
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Poppins',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:-.015em;color:var(--plum)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:2}
+  section{padding:92px 0;position:relative}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:14px}
+  a{color:inherit;text-decoration:none}
+
+  /* draft banner */
+  .draft{background:var(--plum);color:#f6ecdb;font-size:.8rem;text-align:center;padding:9px 16px;letter-spacing:.01em;position:relative;z-index:60}
+  .draft b{color:var(--mustard)}
+
+  /* buttons */
+  .btn{display:inline-block;padding:16px 32px;border-radius:999px;font-weight:600;font-size:.98rem;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s,background .2s;font-family:inherit}
+  .btn-primary{background:var(--terra);color:#fff;box-shadow:0 10px 24px -10px rgba(207,107,74,.7)}
+  .btn-primary:hover{background:var(--terra-dark);transform:translateY(-3px);box-shadow:0 16px 30px -12px rgba(207,107,74,.85)}
+  .btn-mustard{background:var(--mustard);color:#4a3413;box-shadow:0 10px 24px -10px rgba(224,162,60,.75)}
+  .btn-mustard:hover{background:var(--mustard-dark);color:#fff;transform:translateY(-3px)}
+  .btn-ghost{background:transparent;color:var(--plum);border:2px solid var(--plum)}
+  .btn-ghost:hover{background:var(--plum);color:#fff;transform:translateY(-3px)}
+  .btn-light{background:#fff;color:var(--terra)}
+  .btn-light:hover{background:var(--cream);transform:translateY(-3px)}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(253,248,241,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-size:1.4rem;color:var(--plum);font-weight:700}
+  .logo .badge{width:38px;height:38px;border-radius:50%;background:var(--mustard);display:flex;align-items:center;justify-content:center;color:#4a3413;flex-shrink:0}
+  .logo .badge svg{width:22px;height:22px}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:.92rem;color:var(--ink);font-weight:500}
+  .nav-links a:hover{color:var(--terra)}
+  .nav-cta{padding:11px 22px;font-size:.9rem}
+  @media(max-width:880px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* organic blobs */
+  .blob{position:absolute;border-radius:46% 54% 60% 40% / 52% 44% 56% 48%;filter:blur(2px);opacity:.5;z-index:0;pointer-events:none}
+
+  /* hero */
+  .hero{background:linear-gradient(165deg,#fdf8f1 0%,#fbeede 55%,#f6e3cd 100%);padding:78px 0 84px;overflow:hidden}
+  .hero .blob.b1{width:420px;height:420px;background:radial-gradient(circle at 35% 35%,#f3c877,var(--mustard));top:-120px;right:-90px;opacity:.45}
+  .hero .blob.b2{width:300px;height:300px;background:radial-gradient(circle at 40% 40%,#e89a7e,var(--terra));bottom:-110px;left:-80px;opacity:.32}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+  .hero h1{font-size:3.6rem;margin-bottom:22px;color:var(--plum)}
+  .hero h1 em{font-style:normal;color:var(--terra);position:relative}
+  .hero h1 em::after{content:'';position:absolute;left:0;right:0;bottom:4px;height:12px;background:var(--mustard);opacity:.45;border-radius:8px;z-index:-1}
+  .hero p.sub{font-size:1.22rem;color:var(--muted);max-width:30em;margin-bottom:30px}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-note{margin-top:24px;font-size:.92rem;color:var(--ink);display:inline-flex;align-items:center;gap:10px;background:#fff;padding:11px 18px;border-radius:999px;box-shadow:0 12px 30px -18px rgba(90,63,99,.5)}
+  .hero-note svg{width:20px;height:20px;color:var(--sage-deep);flex-shrink:0}
+  .hero-note b{color:var(--plum)}
+  .hero-visual{position:relative;aspect-ratio:4/5;border-radius:40% 60% 58% 42% / 55% 48% 52% 45%;
+    background:linear-gradient(150deg,var(--sage) 0%,var(--sage-deep) 100%);
+    box-shadow:0 30px 60px -28px rgba(93,131,105,.6);display:flex;align-items:flex-end;padding:30px;overflow:hidden}
+  .hero-visual .anchor-big{position:absolute;top:34px;left:34px;width:96px;height:96px;opacity:.22;color:#fff}
+  .hero-visual .card{background:#fff;border-radius:20px;padding:18px 20px;width:100%;box-shadow:0 14px 30px -16px rgba(58,47,42,.4);position:relative;z-index:2}
+  .hero-visual .card strong{font-family:'Fraunces',serif;color:var(--plum);font-size:1.08rem;display:block;margin-bottom:3px}
+  .hero-visual .card span{display:block;font-size:.86rem;color:var(--muted);line-height:1.5}
+  .hero-visual .dot{position:absolute;width:64px;height:64px;border-radius:50%;background:var(--mustard);opacity:.85;top:40px;right:36px;z-index:1}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr}.hero h1{font-size:2.6rem}.hero-visual{display:none}}
+
+  /* trust bar */
+  .trust{background:var(--plum);color:#f1e6d6;position:relative;overflow:hidden}
+  .trust .wrap{display:flex;justify-content:space-around;gap:24px;flex-wrap:wrap;padding:34px 24px}
+  .trust .item{text-align:center}
+  .trust .num{font-family:'Fraunces',serif;font-size:2.2rem;color:var(--mustard);font-weight:700}
+  .trust .lbl{font-size:.82rem;letter-spacing:.03em;opacity:.85}
+
+  /* wedges */
+  .wedges{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:50px}
+  .wedge{background:#fff;border-radius:var(--radius);padding:36px 30px;transition:transform .25s,box-shadow .25s;box-shadow:0 18px 40px -30px rgba(90,63,99,.45);border:1px solid var(--line)}
+  .wedge:hover{transform:translateY(-6px);box-shadow:0 26px 46px -26px rgba(90,63,99,.5)}
+  .wedge .ic{width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:#fff}
+  .wedge:nth-child(1) .ic{background:linear-gradient(145deg,var(--terra),#e08a6a)}
+  .wedge:nth-child(2) .ic{background:linear-gradient(145deg,var(--sage-deep),var(--sage))}
+  .wedge:nth-child(3) .ic{background:linear-gradient(145deg,var(--mustard),#edb95f)}
+  .wedge .ic svg{width:28px;height:28px}
+  .wedge h3{font-size:1.32rem;margin-bottom:10px}
+  .wedge p{color:var(--muted);font-size:.97rem}
+
+  @media(max-width:880px){.wedges{grid-template-columns:1fr}}
+
+  .section-head{max-width:36em}
+  .section-head h2{font-size:2.6rem;margin-bottom:14px}
+  .section-head.center{margin:0 auto;text-align:center}
+  .section-head p{color:var(--muted);font-size:1.12rem}
+
+  /* steps */
+  .steps{background:var(--cream-2);position:relative;overflow:hidden}
+  .steps .blob.b3{width:340px;height:340px;background:radial-gradient(circle at 40% 40%,#cfe0d4,var(--sage));top:-120px;left:-110px;opacity:.4}
+  .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:54px}
+  .step{background:#fff;border-radius:var(--radius);padding:34px 28px;box-shadow:0 16px 38px -30px rgba(90,63,99,.4)}
+  .step .n{width:54px;height:54px;border-radius:50%;background:var(--mustard);color:#4a3413;font-family:'Fraunces',serif;font-weight:700;font-size:1.6rem;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .step h3{font-size:1.26rem;margin:0 0 8px}
+  .step p{color:var(--muted);font-size:.96rem}
+  @media(max-width:880px){.step-grid{grid-template-columns:1fr}}
+
+  /* team */
+  .team{background:var(--cream)}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:50px}
+  .psy{background:#fff;border-radius:var(--radius);overflow:hidden;text-align:center;transition:transform .25s,box-shadow .25s;box-shadow:0 18px 40px -30px rgba(90,63,99,.45);border:1px solid var(--line)}
+  .psy:hover{transform:translateY(-6px);box-shadow:0 26px 46px -26px rgba(90,63,99,.5)}
+  .psy .ph{height:184px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:#fff;position:relative}
+  .psy:nth-child(1) .ph{background:linear-gradient(150deg,var(--terra),#e08a6a)}
+  .psy:nth-child(2) .ph{background:linear-gradient(150deg,var(--sage-deep),var(--sage))}
+  .psy:nth-child(3) .ph{background:linear-gradient(150deg,var(--mauve),#b79bc0)}
+  .psy:nth-child(4) .ph{background:linear-gradient(150deg,var(--mustard),#edb95f)}
+  .psy .body{padding:22px 18px 26px}
+  .psy h3{font-size:1.2rem;margin-bottom:3px}
+  .psy .spec{color:var(--terra);font-weight:600;font-size:.88rem;margin-bottom:8px}
+  .psy .cred{font-size:.8rem;color:var(--muted)}
+  .psy a{display:inline-block;margin-top:14px;font-size:.85rem;color:var(--plum);font-weight:600;border-bottom:2px solid var(--mustard);padding-bottom:1px}
+  .psy a:hover{color:var(--terra)}
+  @media(max-width:880px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.team-grid{grid-template-columns:1fr}}
+
+  /* method */
+  .method{background:var(--cream-2);overflow:hidden;position:relative}
+  .method .blob.b4{width:360px;height:360px;background:radial-gradient(circle at 40% 40%,#f3c877,var(--mustard));bottom:-140px;right:-120px;opacity:.35}
+  .method-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .method-card{background:linear-gradient(155deg,var(--plum),#6f5079);color:#f1e6d6;border-radius:30px;padding:42px;box-shadow:0 30px 60px -30px rgba(90,63,99,.7)}
+  .method-card h3{color:#fff;font-size:1.7rem;margin-bottom:8px}
+  .method-card .tag{display:inline-block;background:var(--mustard);color:#4a3413;padding:6px 16px;border-radius:999px;font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;font-weight:700;margin-bottom:20px}
+  .method-steps{list-style:none;margin-top:10px}
+  .method-steps li{padding:15px 0;border-top:1px solid rgba(255,255,255,.16);display:flex;gap:16px;align-items:flex-start}
+  .method-steps li:first-child{border-top:none}
+  .method-steps .letter{font-family:'Fraunces',serif;font-weight:700;color:var(--mustard);font-size:1.3rem;min-width:34px}
+  .method-steps b{color:#fff;font-family:inherit;font-weight:600}
+  .method-steps span{font-size:.95rem;opacity:.92}
+  @media(max-width:880px){.method-grid{grid-template-columns:1fr;gap:34px}}
+
+  /* guarantee */
+  .guarantee{background:linear-gradient(150deg,var(--terra) 0%,#d97a55 100%);color:#fff;text-align:center;overflow:hidden}
+  .guarantee .blob.b5{width:400px;height:400px;background:radial-gradient(circle at 40% 40%,rgba(255,255,255,.3),transparent);top:-150px;left:-100px;opacity:.6}
+  .guarantee .badge{width:96px;height:96px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;border:2px solid rgba(255,255,255,.4)}
+  .guarantee .badge svg{width:48px;height:48px}
+  .guarantee h2{color:#fff;font-size:2.7rem;max-width:15em;margin:0 auto 16px}
+  .guarantee p{max-width:35em;margin:0 auto 28px;opacity:.96;font-size:1.14rem}
+
+  /* testimonials */
+  .testi{background:var(--cream)}
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+  .tcard{background:#fff;border-radius:var(--radius);padding:30px;box-shadow:0 18px 40px -30px rgba(90,63,99,.45);border:1px solid var(--line);position:relative}
+  .tcard .quote{font-family:'Fraunces',serif;font-size:3.4rem;color:var(--mustard);line-height:.6;opacity:.55;margin-bottom:8px;height:24px}
+  .tcard .stars{color:var(--mustard);letter-spacing:2px;margin-bottom:12px;font-size:.95rem}
+  .tcard p{font-size:1rem;color:var(--ink);margin-bottom:20px}
+  .tcard .who{display:flex;align-items:center;gap:12px}
+  .tcard .av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;color:#fff;font-family:'Fraunces',serif}
+  .tcard:nth-child(1) .av{background:var(--terra)}
+  .tcard:nth-child(2) .av{background:var(--sage-deep)}
+  .tcard:nth-child(3) .av{background:var(--mauve)}
+  .tcard .who b{font-size:.92rem;color:var(--plum);display:block;font-family:'Poppins',sans-serif}
+  .tcard .who span{font-size:.8rem;color:var(--muted)}
+  @media(max-width:880px){.tgrid{grid-template-columns:1fr}}
+  .media-logos{display:flex;gap:40px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:54px;opacity:.5;font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;color:var(--plum)}
+
+  /* pricing */
+  .pricing{background:var(--cream-2);overflow:hidden;position:relative}
+  .pricing .blob.b6{width:320px;height:320px;background:radial-gradient(circle at 40% 40%,#e89a7e,var(--terra));top:-120px;right:-100px;opacity:.28}
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px;align-items:stretch}
+  .plan{background:#fff;border-radius:var(--radius);padding:34px 30px;display:flex;flex-direction:column;box-shadow:0 18px 40px -30px rgba(90,63,99,.4);border:1px solid var(--line)}
+  .plan.feat{border:2px solid var(--terra);box-shadow:0 28px 56px -28px rgba(207,107,74,.6);position:relative;transform:scale(1.02)}
+  .plan.feat .pill{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--terra);color:#fff;font-size:.72rem;padding:6px 18px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;white-space:nowrap}
+  .plan h3{font-size:1.22rem;margin-bottom:6px}
+  .plan .price{font-family:'Fraunces',serif;font-size:2.8rem;color:var(--plum);font-weight:700;margin:6px 0}
+  .plan .price small{font-size:1rem;color:var(--muted);font-weight:400}
+  .plan .save{color:var(--terra);font-weight:600;font-size:.86rem;margin-bottom:18px}
+  .plan ul{list-style:none;margin:14px 0 26px;flex:1}
+  .plan li{padding:8px 0;font-size:.93rem;color:var(--ink);display:flex;gap:10px;align-items:flex-start}
+  .plan li .ck{width:22px;height:22px;border-radius:50%;background:var(--sage);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .plan li .ck svg{width:13px;height:13px;color:#fff}
+  @media(max-width:880px){.pgrid{grid-template-columns:1fr}.plan.feat{transform:none}}
+
+  /* lead magnet */
+  .lead{background:linear-gradient(150deg,var(--sage-deep) 0%,#6b9079 100%);color:#f1f7f2;overflow:hidden;position:relative}
+  .lead .blob.b7{width:360px;height:360px;background:radial-gradient(circle at 40% 40%,rgba(255,255,255,.25),transparent);bottom:-140px;left:-110px;opacity:.7}
+  .lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .lead h2{color:#fff;font-size:2.3rem;margin-bottom:14px}
+  .lead p{opacity:.94;margin-bottom:26px}
+  .lead form{display:flex;gap:10px;flex-wrap:wrap}
+  .lead input{flex:1;min-width:220px;padding:16px 20px;border-radius:999px;border:none;font-family:inherit;font-size:.95rem;color:var(--ink)}
+  .lead .chk{font-size:.78rem;opacity:.8;margin-top:14px}
+  .lead-visual{background:#fff;border-radius:26px;aspect-ratio:5/4;display:flex;align-items:center;justify-content:center;text-align:center;padding:34px;box-shadow:0 30px 60px -28px rgba(0,0,0,.4);transform:rotate(-2deg)}
+  .lead-visual .bk{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;line-height:1.3;color:var(--plum)}
+  .lead-visual .bk .emoji{font-size:2.6rem;display:block;margin-bottom:14px}
+  .lead-visual .bk small{display:block;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:400;color:var(--terra);margin-top:12px;letter-spacing:.12em;text-transform:uppercase}
+  @media(max-width:880px){.lead-grid{grid-template-columns:1fr}.lead-visual{display:none}}
+
+  /* faq */
+  .faq{background:var(--cream)}
+  .faq-list{max-width:780px;margin:50px auto 0}
+  details{background:#fff;border-radius:18px;margin-bottom:14px;padding:0 26px;box-shadow:0 12px 30px -26px rgba(90,63,99,.5);border:1px solid var(--line)}
+  summary{cursor:pointer;padding:22px 0;font-weight:600;color:var(--plum);list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:1.04rem;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:'+';font-size:1.6rem;color:var(--terra);font-weight:400;flex-shrink:0;transition:transform .2s}
+  details[open] summary::after{content:'–'}
+  details p{padding:0 0 24px;color:var(--muted)}
+
+  /* final cta */
+  .final{background:linear-gradient(160deg,#fbeede,#f6e3cd);text-align:center;overflow:hidden;position:relative}
+  .final .blob.b8{width:380px;height:380px;background:radial-gradient(circle at 40% 40%,#f3c877,var(--mustard));top:-150px;right:-120px;opacity:.4}
+  .final .blob.b9{width:280px;height:280px;background:radial-gradient(circle at 40% 40%,#e89a7e,var(--terra));bottom:-130px;left:-100px;opacity:.3}
+  .final h2{font-size:2.9rem;margin-bottom:16px;max-width:15em;margin-left:auto;margin-right:auto}
+  .final p{color:var(--muted);max-width:33em;margin:0 auto 30px;font-size:1.14rem}
+
+  /* footer */
+  footer{background:var(--plum);color:#c8b6cf;padding:64px 0 32px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+  footer .logo{color:#fff;margin-bottom:16px}
+  footer .logo .badge{background:var(--mustard)}
+  footer h4{color:#fff;font-size:.9rem;margin-bottom:14px;letter-spacing:.04em}
+  footer a{display:block;color:#c8b6cf;font-size:.9rem;padding:5px 0}
+  footer a:hover{color:var(--mustard)}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:42px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.82rem;opacity:.75}
+  @media(max-width:880px){.foot-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="draft">⚠️ <b>BORRADOR de ejemplo</b> — los nombres de psicólogos, fotos, el nombre del método y los números son provisionales (marcados con * para reemplazar). Sirve para visualizar la estructura y el estilo.</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.2V21"/><path d="M5 12H19"/><path d="M5 12a7 7 0 0 0 14 0"/></svg></span>
+      Ancla y Mente
+    </a>
+    <nav class="nav-links">
+      <a href="#como">Cómo funciona</a>
+      <a href="#equipo">Los 4 psicólogos</a>
+      <a href="#metodo">El método</a>
+      <a href="#precios">Precios</a>
+      <a href="#contacto" class="btn btn-primary nav-cta">Reserva tu sesión</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Psicología online · hecha por personas, para personas</div>
+      <h1>Cuando todo se mueve,<br>encuentra tu <em>ancla</em>.</h1>
+      <p class="sub">Terapia online con 4 psicólogos sanitarios con nombre y cara. Siempre el mismo profesional a tu lado — porque aquí no eres un ticket en una plataforma de miles, eres tú.</p>
+      <div class="hero-ctas">
+        <a href="#contacto" class="btn btn-primary">Reserva tu primera sesión</a>
+        <a href="#equipo" class="btn btn-ghost">Conoce a los 4</a>
+      </div>
+      <div class="hero-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        <span>Garantía firmada: <b>3 sesiones o te devolvemos el 100%.</b></span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <span class="dot"></span>
+      <svg class="anchor-big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.2V21"/><path d="M5 12H19"/><path d="M5 12a7 7 0 0 0 14 0"/></svg>
+      <div class="card">
+        <strong>Tu primera sesión, en una semana o menos</strong>
+        <span>Te presentamos en persona al psicólogo de los 4 que mejor encaja contigo y con lo que estás atravesando.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="wrap">
+    <div class="item"><div class="num">+40 años</div><div class="lbl">de experiencia clínica, sumando a los 4*</div></div>
+    <div class="item"><div class="num">4</div><div class="lbl">psicólogos sanitarios colegiados</div></div>
+    <div class="item"><div class="num">+1.500</div><div class="lbl">personas acompañadas hasta hoy*</div></div>
+    <div class="item"><div class="num">100%</div><div class="lbl">online, seguro y confidencial</div></div>
+  </div>
+</div>
+
+<!-- WEDGES -->
+<section class="wrap">
+  <div class="section-head center">
+    <div class="eyebrow">Por qué Ancla y Mente</div>
+    <h2>Una boutique pequeña, contigo de verdad</h2>
+    <p>Tres cosas que sentirás aquí y no en las grandes plataformas de terapia online.</p>
+  </div>
+  <div class="wedges">
+    <div class="wedge">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.4"/><path d="M3 19c0-3 2.7-5 6-5s6 2 6 5"/><path d="M15 19c0-2 1-3.5 3-3.5"/></svg></div>
+      <h3>4 personas, siempre las mismas</h3>
+      <p>Aquí no te rotan entre miles de profesionales que no recuerdan tu nombre. Conoces a los 4, trabajas siempre con el tuyo y construís juntos una relación real, sesión a sesión.</p>
+    </div>
+    <div class="wedge">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/></svg></div>
+      <h3>Una garantía que firmamos</h3>
+      <p>Sabemos lo que cuesta dar el paso. Por eso, si tras tus 3 primeras sesiones sientes que esto no es para ti, te devolvemos el 100%. Por escrito. Nadie más en España lo hace.</p>
+    </div>
+    <div class="wedge">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></svg></div>
+      <h3>Un método con nombre y rumbo</h3>
+      <p>No improvisamos ni damos vueltas sin fin. Seguimos el <b>Método ANCLA*</b>, un camino estructurado en fases, con objetivos claros desde la primera conversación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps" id="como">
+  <span class="blob b3"></span>
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Sencillo desde el primer paso</div>
+      <h2>Empezar es más fácil de lo que crees</h2>
+    </div>
+    <div class="step-grid">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Cuéntanos qué te pasa</h3>
+        <p>Un cuestionario breve y confidencial de 2 minutos. Sin compromiso, sin pagar nada todavía y sin tener que explicarlo todo de golpe.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Te presentamos a tu psicólogo</h3>
+        <p>Elegimos —en persona, nunca con un algoritmo— cuál de los 4 conecta mejor contigo, con tu historia y con lo que quieres trabajar.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Empezáis el camino juntos</h3>
+        <p>Tu primera sesión por videollamada, en una semana o menos. Y a partir de ahí, siempre la misma persona acompañándote.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="equipo">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">El equipo</div>
+      <h2>Cuatro caras, cero anonimato</h2>
+      <p>Cuatro psicólogos sanitarios con nombre, cara y una especialidad de verdad. Aquí está toda la diferencia.</p>
+    </div>
+    <div class="team-grid">
+      <div class="psy">
+        <div class="ph">DV</div>
+        <div class="body">
+          <h3>David V.*</h3>
+          <div class="spec">Ansiedad y rendimiento</div>
+          <div class="cred">Psicólogo General Sanitario · Col. M-00000*</div>
+          <a href="#">Ver perfil</a>
+        </div>
+      </div>
+      <div class="psy">
+        <div class="ph">MR</div>
+        <div class="body">
+          <h3>Mario R.*</h3>
+          <div class="spec">Depresión y autoestima</div>
+          <div class="cred">Psicólogo General Sanitario · Col. M-00000*</div>
+          <a href="#">Ver perfil</a>
+        </div>
+      </div>
+      <div class="psy">
+        <div class="ph">LC</div>
+        <div class="body">
+          <h3>Laura C.*</h3>
+          <div class="spec">Pareja y vínculos</div>
+          <div class="cred">Psicóloga General Sanitaria · Col. M-00000*</div>
+          <a href="#">Ver perfil</a>
+        </div>
+      </div>
+      <div class="psy">
+        <div class="ph">SG</div>
+        <div class="body">
+          <h3>Sara G.*</h3>
+          <div class="spec">Duelo y cambios vitales</div>
+          <div class="cred">Psicóloga General Sanitaria · Col. M-00000*</div>
+          <a href="#">Ver perfil</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="method" id="metodo">
+  <span class="blob b4"></span>
+  <div class="wrap method-grid">
+    <div>
+      <div class="eyebrow">Nuestra forma de acompañarte</div>
+      <h2 style="font-size:2.5rem;margin-bottom:16px">El Método ANCLA*</h2>
+      <p style="color:var(--muted);font-size:1.1rem;margin-bottom:18px">La mayoría de terapias online te emparejan con alguien y ya está. Nosotros caminamos contigo con un rumbo claro: sabes en qué fase estás, qué estamos trabajando y hacia dónde vamos desde el primer día.</p>
+      <p style="color:var(--muted)">No es terapia indefinida que no lleva a ninguna parte. Es un proceso con objetivos, revisiones y resultados que puedes notar en tu vida.</p>
+    </div>
+    <div class="method-card">
+      <span class="tag">4 fases</span>
+      <h3>Del «no sé qué me pasa» al «ya puedo solo»</h3>
+      <ul class="method-steps">
+        <li><span class="letter">A</span><span><b>Análisis.</b> Entendemos juntos qué te trae y definimos objetivos concretos.</span></li>
+        <li><span class="letter">N</span><span><b>Núcleo.</b> Vamos al origen de lo que te pasa, no solo al síntoma de la superficie.</span></li>
+        <li><span class="letter">C</span><span><b>Cambio.</b> Herramientas prácticas que aplicas en tu día a día y que de verdad se notan.</span></li>
+        <li><span class="letter">LA</span><span><b>Logros y Alta.</b> Consolidamos lo conseguido y te devolvemos tu autonomía.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <span class="blob b5"></span>
+  <div class="wrap">
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+    <h2>3 sesiones o te devolvemos el 100%</h2>
+    <p>Sabemos el valor que tiene tu confianza, así que la cuidamos. Confiamos tanto en nuestro método y en nuestro equipo que lo firmamos: si tras tus tres primeras sesiones sientes que Ancla y Mente no es para ti, recuperas todo tu dinero. Sin letra pequeña, sin preguntas incómodas.</p>
+    <a href="#contacto" class="btn btn-light">Empieza sin riesgo</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Quienes ya dieron el paso</div>
+      <h2>No estás solo en esto</h2>
+    </div>
+    <div class="tgrid">
+      <div class="tcard">
+        <div class="quote">”</div>
+        <div class="stars">★★★★★</div>
+        <p>«Llevaba meses dándole vueltas a empezar. Que fuera siempre la misma persona, y no una plataforma enorme, fue justo lo que necesitaba para por fin atreverme.»</p>
+        <div class="who"><div class="av">C</div><div><b>Carla M.*</b><span>Madrid · 3 meses en terapia</span></div></div>
+      </div>
+      <div class="tcard">
+        <div class="quote">”</div>
+        <div class="stars">★★★★★</div>
+        <p>«La garantía me quitó el miedo a probar. A la tercera sesión ya tenía clarísimo que seguía, y no me lo he vuelto a plantear. Ojalá lo hubiera hecho antes.»</p>
+        <div class="who"><div class="av">J</div><div><b>Jorge T.*</b><span>Valencia · 6 meses en terapia</span></div></div>
+      </div>
+      <div class="tcard">
+        <div class="quote">”</div>
+        <div class="stars">★★★★★</div>
+        <p>«Por fin un sitio donde sé en qué punto estoy y a dónde vamos. No es hablar por hablar: hay un método y una persona que me conoce de verdad detrás.»</p>
+        <div class="who"><div class="av">N</div><div><b>Nuria P.*</b><span>Sevilla · 4 meses en terapia</span></div></div>
+      </div>
+    </div>
+    <div class="media-logos">
+      <span>El País*</span><span>Forbes*</span><span>Vogue*</span><span>ABC*</span>
+    </div>
+    <p style="text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px">Adheridos al Código de Buenas Prácticas en Telepsicología del Colegio Oficial de la Psicología*</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="precios">
+  <span class="blob b6"></span>
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Precios claros, sin sorpresas</div>
+      <h2>Elige cómo quieres empezar</h2>
+      <p>Todas las opciones incluyen sesión de 50 min por videollamada, siempre tu mismo psicólogo y acceso al Método ANCLA.</p>
+    </div>
+    <div class="pgrid">
+      <div class="plan">
+        <h3>Sesión suelta</h3>
+        <div class="price">79€<small> / sesión</small></div>
+        <div class="save">Sin permanencia</div>
+        <ul>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4L19 6"/></svg></span>50 minutos por videollamada</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4L19 6"/></svg></span>Siempre tu mismo psicólogo</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4L19 6"/></svg></span>Cubierta por la garantía firmada</li>
+        </ul>
+        <a href="#contacto" class="btn btn-ghost">Reservar</a>
+      </div>
+      <div class="plan feat">
+        <span class="pill">El más elegido</span>
+        <h3>Bono 4 sesiones</h3>
+        <div class="price">280€<small> / 4 sesiones</small></div>
+        <div class="save">Ahorras 36€ · 70€/sesión</div>
+        <ul>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4L19 6"/></svg></span>Todo lo del plan suelto</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4L19 6"/></svg></span>Perfecto para recorrer el Método ANCLA</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4L19 6"/></svg></span>Flexibilidad para agendar a tu ritmo</li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary">Empezar ahora</a>
+      </div>
+      <div class="plan">
+        <h3>Bono 8 sesiones</h3>
+        <div class="price">520€<small> / 8 sesiones</small></div>
+        <div class="save">Ahorras 112€ · 65€/sesión</div>
+        <ul>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4L19 6"/></svg></span>El mejor precio por sesión</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4L19 6"/></svg></span>Para procesos más profundos</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4L19 6"/></svg></span>Seguimiento continuado y cercano</li>
+        </ul>
+        <a href="#contacto" class="btn btn-ghost">Reservar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD MAGNET -->
+<section class="lead">
+  <span class="blob b7"></span>
+  <div class="wrap lead-grid">
+    <div>
+      <div class="eyebrow" style="color:#fff">Gratis · descarga inmediata</div>
+      <h2>«7 señales de que tu mente te está pidiendo una pausa»*</h2>
+      <p>Una guía breve y cálida, escrita por nuestros 4 psicólogos, con ejercicios sencillos que puedes empezar a hacer hoy mismo. Déjanos tu email y te la enviamos al instante, sin compromiso.</p>
+      <form onsubmit="event.preventDefault();this.querySelector('input').value='';this.nextElementSibling.style.display='block'">
+        <input type="email" placeholder="Tu correo electrónico" required>
+        <button class="btn btn-mustard" type="submit">¡Quiero mi guía!</button>
+      </form>
+      <div style="display:none;color:#fff;margin-top:14px;font-size:.9rem;font-weight:600">✓ ¡Listo! (demo — en la web real te llegaría la guía al correo)</div>
+      <div class="chk">Acepto la política de privacidad y recibir la newsletter. Puedes darte de baja cuando quieras.</div>
+    </div>
+    <div class="lead-visual">
+      <div class="bk"><span class="emoji">📖</span>7 señales de que tu mente te pide una pausa<small>Guía gratuita</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Resolvemos tus dudas</div>
+      <h2>Eso que te estás preguntando</h2>
+    </div>
+    <div class="faq-list">
+      <details open><summary>¿Cómo funciona la garantía de devolución?</summary><p>Muy fácil: si después de tus 3 primeras sesiones sientes que esto no es para ti, nos lo dices y te devolvemos el 100% de lo que hayas pagado. Sin cuestionarios incómodos ni letra pequeña. Lo firmamos por escrito antes de empezar, para que des el paso tranquilo.</p></details>
+      <details><summary>¿La terapia online funciona igual que la presencial?</summary><p>Sí, de verdad. La evidencia científica muestra que la terapia por videollamada es tan eficaz como la presencial para la mayoría de motivos de consulta. Y, además, te ahorra desplazamientos y te deja hacerla desde tu espacio seguro.</p></details>
+      <details><summary>¿Puedo elegir psicólogo o me lo asignáis?</summary><p>Tras tu cuestionario inicial, te proponemos al profesional de los 4 que mejor encaja contigo. Si prefieres a otro, o si sientes que no conectáis, puedes cambiar sin coste y sin tener que dar explicaciones.</p></details>
+      <details><summary>¿Es confidencial y seguro?</summary><p>Totalmente. Trabajamos con plataformas de videollamada cifradas y estamos sujetos al secreto profesional y al código deontológico del Colegio Oficial de la Psicología. Lo que cuentas aquí, se queda aquí.</p></details>
+      <details><summary>¿Qué necesito para la sesión?</summary><p>Un dispositivo con cámara y conexión a internet, y un rincón tranquilo donde sentirte cómodo para hablar. Nada más. Del resto nos encargamos nosotros.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="contacto">
+  <span class="blob b8"></span>
+  <span class="blob b9"></span>
+  <div class="wrap">
+    <div class="eyebrow">Da el primer paso</div>
+    <h2>Tu ancla está a una conversación de distancia</h2>
+    <p>Empieza hoy con la tranquilidad de la garantía firmada. Sin compromiso, sin riesgo y con alguien que de verdad va a estar contigo.</p>
+    <a href="#" class="btn btn-primary" style="font-size:1.05rem;padding:18px 40px">Reserva tu primera sesión</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.2V21"/><path d="M5 12H19"/><path d="M5 12a7 7 0 0 0 14 0"/></svg></span>
+          Ancla y Mente
+        </div>
+        <p style="font-size:.9rem;max-width:24em">Boutique de psicología online. 4 psicólogos sanitarios, un método propio y una garantía que firmamos. Personas reales acompañando a personas reales.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <a href="#como">Cómo funciona</a>
+        <a href="#equipo">Los 4 psicólogos</a>
+        <a href="#metodo">El método</a>
+        <a href="#precios">Precios</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="#">WhatsApp*</a>
+        <a href="#">hola@anclaymente.es*</a>
+        <a href="#">+34 600 000 000*</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Garantía (condiciones)</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Ancla y Mente* · Psicología online en España</span>
+      <span>Adheridos al Código de Buenas Prácticas en Telepsicología del COP*</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

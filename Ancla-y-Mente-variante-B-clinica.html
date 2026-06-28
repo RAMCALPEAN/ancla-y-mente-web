@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancla y Mente — Terapia online con 4 psicólogos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#2f4a3e;          /* verde profundo */
+    --green-deep:#243b31;
+    --green-soft:#6f8d7a;      /* salvia */
+    --green-tint:#e3ebe4;      /* salvia muy clara */
+    --green-line:#cfdcd2;
+    --cream:#f7f5f0;           /* blanco roto */
+    --cream-2:#fbfaf6;
+    --peach:#e7b89a;           /* acento cálido melocotón apagado */
+    --peach-deep:#cf9a78;
+    --sand:#ead9c6;
+    --ink:#1f2a25;
+    --muted:#5e6b62;
+    --line:#e4e0d6;
+    --radius:14px;
+    --maxw:1160px;
+    --shadow-sm:0 2px 8px -2px rgba(36,59,49,.12);
+    --shadow-md:0 18px 40px -26px rgba(36,59,49,.5);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,.serif{font-family:'Newsreader',Georgia,serif;font-weight:500;line-height:1.1;letter-spacing:-.01em;color:var(--green)}
+  h2,h3{font-family:'Inter',sans-serif;font-weight:600;line-height:1.18;letter-spacing:-.015em;color:var(--green)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  section{padding:92px 0}
+  .eyebrow{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green-soft);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:'';width:22px;height:1.5px;background:var(--green-soft);display:inline-block}
+  .eyebrow.center{justify-content:center}
+  a{color:inherit;text-decoration:none}
+
+  /* draft banner */
+  .draft{background:var(--green-deep);color:#e6ede7;font-size:.8rem;text-align:center;padding:9px 16px;letter-spacing:.01em}
+  .draft b{color:var(--peach)}
+
+  /* buttons */
+  .btn{display:inline-block;padding:14px 28px;border-radius:8px;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:.2s ease;font-family:inherit;letter-spacing:.01em}
+  .btn-primary{background:var(--green);color:#fff;box-shadow:0 6px 16px -8px rgba(47,74,62,.6)}
+  .btn-primary:hover{background:var(--green-deep);transform:translateY(-2px);box-shadow:0 12px 22px -10px rgba(47,74,62,.7)}
+  .btn-ghost{background:transparent;color:var(--green);border:1.5px solid var(--green-line)}
+  .btn-ghost:hover{border-color:var(--green);background:var(--green-tint)}
+  .btn-light{background:#fff;color:var(--green)}
+  .btn-light:hover{background:var(--cream);transform:translateY(-2px)}
+  .btn-peach{background:var(--peach);color:var(--green-deep)}
+  .btn-peach:hover{background:var(--peach-deep);transform:translateY(-2px)}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(247,245,240,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Newsreader',serif;font-size:1.3rem;color:var(--green);font-weight:600}
+  .logo .mark{width:34px;height:34px;border-radius:9px;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .logo .mark svg{width:20px;height:20px;color:#fff}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:.9rem;color:var(--muted);font-weight:500}
+  .nav-links a:hover{color:var(--green)}
+  .nav-cta{padding:10px 20px;font-size:.88rem;color:#fff}
+  @media(max-width:860px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* hero */
+  .hero{background:
+      radial-gradient(110% 80% at 88% 0%, var(--green-tint) 0, transparent 55%),
+      linear-gradient(180deg,var(--cream-2) 0%,var(--cream) 100%);
+    padding:78px 0 72px;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-size:3.5rem;margin-bottom:22px}
+  .hero h1 em{font-style:italic;color:var(--green-soft)}
+  .hero p.sub{font-size:1.16rem;color:var(--muted);max-width:31em;margin-bottom:30px}
+  .hero-ctas{display:flex;gap:13px;flex-wrap:wrap}
+  .hero-badges{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+  .hbadge{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--green-line);border-radius:999px;padding:7px 14px;font-size:.82rem;color:var(--green);font-weight:500;box-shadow:var(--shadow-sm)}
+  .hbadge svg{width:15px;height:15px;color:var(--green-soft)}
+
+  /* hero visual - clinical card stack */
+  .hero-visual{position:relative}
+  .hv-panel{background:#fff;border:1px solid var(--green-line);border-radius:18px;padding:26px;box-shadow:var(--shadow-md)}
+  .hv-top{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .hv-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(150deg,var(--green-soft),var(--green));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:1.05rem;flex-shrink:0}
+  .hv-top b{display:block;color:var(--green);font-size:1rem}
+  .hv-top span{font-size:.82rem;color:var(--muted)}
+  .hv-tag{margin-left:auto;background:var(--green-tint);color:var(--green);font-size:.72rem;font-weight:600;padding:5px 11px;border-radius:999px;white-space:nowrap}
+  .hv-progress{margin-top:20px}
+  .hv-progress .row{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-bottom:7px}
+  .hv-progress .bar{height:7px;border-radius:999px;background:var(--green-tint);overflow:hidden}
+  .hv-progress .bar i{display:block;height:100%;width:62%;border-radius:999px;background:linear-gradient(90deg,var(--green-soft),var(--green))}
+  .hv-steps{margin-top:20px;display:flex;gap:8px}
+  .hv-steps .s{flex:1;text-align:center;font-size:.7rem;font-weight:600;color:var(--green-soft);padding:9px 4px;border-radius:8px;background:var(--cream)}
+  .hv-steps .s.on{background:var(--green);color:#fff}
+  .hv-float{position:absolute;bottom:-22px;right:-14px;background:var(--peach);color:var(--green-deep);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow-md);max-width:200px}
+  .hv-float b{font-family:'Newsreader',serif;font-size:1.05rem;display:block}
+  .hv-float span{font-size:.78rem}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr}.hero h1{font-size:2.5rem}.hero-visual{display:none}}
+
+  /* trust bar */
+  .trust{background:var(--green);color:#e6ede7}
+  .trust .wrap{display:flex;justify-content:space-around;gap:24px;flex-wrap:wrap;padding:34px 24px}
+  .trust .item{text-align:center;flex:1;min-width:150px}
+  .trust .num{font-family:'Newsreader',serif;font-size:2.2rem;color:#fff;line-height:1}
+  .trust .lbl{font-size:.8rem;letter-spacing:.03em;opacity:.82;margin-top:6px}
+  .trust .item + .item{border-left:1px solid rgba(255,255,255,.12)}
+  @media(max-width:680px){.trust .item + .item{border-left:none}}
+
+  /* section heads */
+  .section-head{max-width:36em}
+  .section-head h2{font-size:2.3rem;margin-bottom:14px}
+  .section-head.center{margin:0 auto;text-align:center}
+  .section-head p{color:var(--muted);font-size:1.06rem}
+
+  /* wedges */
+  .wedges{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+  .wedge{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;transition:.2s;position:relative}
+  .wedge:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--green-line)}
+  .wedge .ic{width:54px;height:54px;border-radius:12px;background:var(--green-tint);display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--green)}
+  .wedge .ic svg{width:27px;height:27px}
+  .wedge h3{font-size:1.22rem;margin-bottom:10px}
+  .wedge p{color:var(--muted);font-size:.95rem}
+  .wedge .num-tag{position:absolute;top:28px;right:30px;font-family:'Newsreader',serif;font-size:1.1rem;color:var(--green-line)}
+  @media(max-width:860px){.wedges{grid-template-columns:1fr}}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:52px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+  .step{padding:36px 32px;position:relative}
+  .step + .step{border-left:1px solid var(--line)}
+  .step .n{width:42px;height:42px;border-radius:10px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;margin-bottom:18px}
+  .step h3{font-size:1.18rem;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:.94rem}
+  @media(max-width:860px){.steps{grid-template-columns:1fr}.step + .step{border-left:none;border-top:1px solid var(--line)}}
+
+  /* team */
+  .team{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:48px}
+  .psy{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.2s}
+  .psy:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--green-line)}
+  .psy .ph{height:172px;display:flex;align-items:center;justify-content:center;font-family:'Newsreader',serif;font-size:2.7rem;color:#fff;position:relative}
+  .psy:nth-child(1) .ph{background:linear-gradient(155deg,#3a5a4b,#6f8d7a)}
+  .psy:nth-child(2) .ph{background:linear-gradient(155deg,#2f4a3e,#577a64)}
+  .psy:nth-child(3) .ph{background:linear-gradient(155deg,#4a6b58,#7c9d88)}
+  .psy:nth-child(4) .ph{background:linear-gradient(155deg,#264134,#52755f)}
+  .psy .ph .col{position:absolute;bottom:10px;right:12px;background:rgba(255,255,255,.92);color:var(--green);font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:999px}
+  .psy .body{padding:20px 20px 24px}
+  .psy h3{font-size:1.12rem;margin-bottom:4px}
+  .psy .spec{color:var(--green-soft);font-weight:600;font-size:.86rem;margin-bottom:12px}
+  .psy .cred{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;color:var(--green);background:var(--green-tint);padding:5px 10px;border-radius:7px;font-weight:500}
+  .psy .cred svg{width:13px;height:13px;color:var(--green-soft)}
+  .psy a{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-size:.85rem;color:var(--green);font-weight:600}
+  .psy a:hover{gap:8px}
+  .psy a svg{width:14px;height:14px;transition:.2s}
+  @media(max-width:860px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.team-grid{grid-template-columns:1fr}}
+
+  /* method */
+  .method-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;align-items:center}
+  .method-intro h2{font-size:2.3rem;margin-bottom:16px}
+  .method-intro p{color:var(--muted);font-size:1.05rem;margin-bottom:16px}
+  .method-flow{background:var(--green);border-radius:20px;padding:14px;box-shadow:var(--shadow-md)}
+  .mf-head{padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between}
+  .mf-head b{color:#fff;font-size:1.15rem;font-family:'Newsreader',serif;font-weight:500}
+  .mf-head .tag{background:rgba(255,255,255,.14);color:#e9f0ea;padding:5px 13px;border-radius:999px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+  .mf-phase{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 20px;margin:8px}
+  .mf-phase .badge{width:46px;height:46px;border-radius:11px;background:var(--peach);color:var(--green-deep);display:flex;align-items:center;justify-content:center;font-family:'Newsreader',serif;font-weight:600;font-size:1.25rem;flex-shrink:0}
+  .mf-phase .txt b{color:#fff;display:block;font-size:1rem;margin-bottom:2px}
+  .mf-phase .txt span{color:#c8d6cc;font-size:.9rem}
+  .mf-connector{width:2px;height:14px;background:rgba(255,255,255,.18);margin:0 auto 0 31px}
+  @media(max-width:860px){.method-grid{grid-template-columns:1fr;gap:34px}}
+
+  /* guarantee */
+  .guarantee{background:var(--green-deep);color:#fff;position:relative;overflow:hidden}
+  .guarantee::after{content:'';position:absolute;inset:0;background:radial-gradient(80% 120% at 50% -10%, rgba(111,141,122,.35) 0, transparent 60%);pointer-events:none}
+  .guarantee .wrap{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center}
+  .guarantee .seal{width:118px;height:118px;border-radius:50%;border:2px solid rgba(231,184,154,.5);display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,255,255,.04)}
+  .guarantee .seal svg{width:54px;height:54px;color:var(--peach)}
+  .guarantee h2{color:#fff;font-size:2.1rem;margin-bottom:12px;line-height:1.2}
+  .guarantee p{max-width:40em;opacity:.9;font-size:1.05rem}
+  .guarantee .act{text-align:right}
+  .guarantee .act small{display:block;margin-top:10px;font-size:.78rem;opacity:.7}
+  @media(max-width:860px){.guarantee .wrap{grid-template-columns:1fr;text-align:center;gap:26px}.guarantee .seal{margin:0 auto}.guarantee .act{text-align:center}}
+
+  /* evidence strip */
+  .evidence{background:var(--green-tint)}
+  .ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ev{background:#fff;border:1px solid var(--green-line);border-radius:var(--radius);padding:28px;display:flex;gap:16px;align-items:flex-start}
+  .ev .ic{width:44px;height:44px;border-radius:10px;background:var(--green-tint);display:flex;align-items:center;justify-content:center;color:var(--green);flex-shrink:0}
+  .ev .ic svg{width:22px;height:22px}
+  .ev b{display:block;color:var(--green);font-size:1.55rem;font-family:'Newsreader',serif;line-height:1.1}
+  .ev span{font-size:.9rem;color:var(--muted)}
+  @media(max-width:860px){.ev-grid{grid-template-columns:1fr}}
+
+  /* testimonials */
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+  .tcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column}
+  .tcard .stars{color:var(--peach-deep);letter-spacing:2px;margin-bottom:14px;font-size:.95rem}
+  .tcard p{font-size:1rem;color:#34403a;margin-bottom:20px;flex:1}
+  .tcard .who{display:flex;align-items:center;gap:12px}
+  .tcard .av{width:42px;height:42px;border-radius:50%;background:var(--green-tint);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--green)}
+  .tcard .who b{font-size:.92rem;color:var(--green);display:block}
+  .tcard .who span{font-size:.8rem;color:var(--muted)}
+  @media(max-width:860px){.tgrid{grid-template-columns:1fr}}
+  .media-logos{display:flex;gap:40px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:50px;opacity:.5;font-family:'Newsreader',serif;font-size:1.2rem;color:var(--green)}
+  .cop-note{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px;display:flex;align-items:center;justify-content:center;gap:8px}
+  .cop-note svg{width:16px;height:16px;color:var(--green-soft)}
+
+  /* pricing */
+  .pricing{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;align-items:stretch}
+  .plan{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;display:flex;flex-direction:column;transition:.2s}
+  .plan:hover{box-shadow:var(--shadow-md)}
+  .plan.feat{border:2px solid var(--green);box-shadow:var(--shadow-md);position:relative}
+  .plan.feat .pill{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-size:.72rem;padding:6px 16px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+  .plan h3{font-size:1.18rem;margin-bottom:6px}
+  .plan .price{font-family:'Newsreader',serif;font-size:2.6rem;color:var(--green);margin:6px 0;font-weight:500}
+  .plan .price small{font-size:1rem;color:var(--muted);font-weight:400;font-family:'Inter',sans-serif}
+  .plan .save{display:inline-block;color:var(--green);background:var(--green-tint);padding:4px 11px;border-radius:7px;font-weight:600;font-size:.82rem;margin-bottom:16px}
+  .plan ul{list-style:none;margin:14px 0 24px;flex:1}
+  .plan li{padding:8px 0;font-size:.92rem;color:#41504a;display:flex;gap:10px;align-items:flex-start}
+  .plan li svg{width:18px;height:18px;color:var(--green-soft);flex-shrink:0;margin-top:3px}
+  @media(max-width:860px){.pgrid{grid-template-columns:1fr}}
+
+  /* lead magnet */
+  .lead{background:var(--green)}
+  .lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+  .lead .eyebrow{color:var(--peach)}
+  .lead .eyebrow::before{background:var(--peach)}
+  .lead h2{color:#fff;font-size:2rem;margin-bottom:14px}
+  .lead p{color:#cdd9d0;margin-bottom:24px}
+  .lead form{display:flex;gap:10px;flex-wrap:wrap}
+  .lead input{flex:1;min-width:220px;padding:14px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.95);font-family:inherit;font-size:.95rem;color:var(--ink)}
+  .lead input:focus{outline:2px solid var(--peach);outline-offset:1px}
+  .lead .chk{font-size:.78rem;color:#a9bcaf;margin-top:14px}
+  .lead-visual{background:#fff;border:1px solid var(--green-line);border-radius:16px;padding:30px;box-shadow:var(--shadow-md)}
+  .lead-visual .doc{border:1px solid var(--line);border-radius:10px;padding:22px;background:var(--cream-2)}
+  .lead-visual .doc .ttl{font-family:'Newsreader',serif;color:var(--green);font-size:1.2rem;line-height:1.25;margin-bottom:16px}
+  .lead-visual .doc .ln{height:9px;border-radius:999px;background:var(--green-tint);margin-bottom:10px}
+  .lead-visual .doc .ln.s{width:70%}
+  .lead-visual .doc .badge{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:var(--green-tint);color:var(--green);font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:7px}
+  .lead-visual .doc .badge svg{width:14px;height:14px;color:var(--green-soft)}
+  @media(max-width:860px){.lead-grid{grid-template-columns:1fr}.lead-visual{order:-1}}
+
+  /* faq */
+  .faq-list{max-width:780px;margin:48px auto 0}
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;padding:0 24px;transition:.2s}
+  details[open]{border-color:var(--green-line);box-shadow:var(--shadow-sm)}
+  summary{cursor:pointer;padding:20px 0;font-weight:600;color:var(--green);list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:1rem;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:'';width:11px;height:11px;border-right:2px solid var(--green-soft);border-bottom:2px solid var(--green-soft);transform:rotate(45deg);transition:.2s;flex-shrink:0;margin-top:-4px}
+  details[open] summary::after{transform:rotate(-135deg);margin-top:2px}
+  details p{padding:0 0 22px;color:var(--muted)}
+
+  /* final cta */
+  .final{background:
+      radial-gradient(90% 120% at 50% 0%, var(--green-tint) 0, transparent 60%),
+      var(--cream);text-align:center}
+  .final h2{font-size:2.5rem;margin-bottom:16px;max-width:15em;margin-left:auto;margin-right:auto}
+  .final p{color:var(--muted);max-width:32em;margin:0 auto 28px;font-size:1.08rem}
+
+  /* footer */
+  footer{background:var(--green-deep);color:#a7b8ac;padding:60px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}
+  footer .logo{color:#fff;margin-bottom:14px}
+  footer .logo .mark{background:rgba(255,255,255,.1)}
+  footer h4{color:#fff;font-size:.85rem;margin-bottom:14px;letter-spacing:.04em;text-transform:uppercase}
+  footer a{display:block;color:#a7b8ac;font-size:.9rem;padding:5px 0}
+  footer a:hover{color:var(--peach)}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:42px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.82rem;opacity:.7}
+  @media(max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="draft">⚠️ <b>BORRADOR de ejemplo</b> — los nombres de psicólogos, fotos, el nombre del método y los números son provisionales (marcados para reemplazar). Sirve para visualizar la estructura y el estilo.</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.2V21"/><path d="M5 12H19"/><path d="M5 12a7 7 0 0 0 14 0"/><path d="M19 12l1.5-1M5 12l-1.5-1"/></svg></span>
+      Ancla y Mente
+    </a>
+    <nav class="nav-links">
+      <a href="#como">Cómo funciona</a>
+      <a href="#equipo">Los 4 psicólogos</a>
+      <a href="#metodo">El método</a>
+      <a href="#precios">Precios</a>
+      <a href="#contacto" class="btn btn-primary nav-cta">Reserva tu sesión</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Psicología online · España</div>
+      <h1>Encuentra tu <em>ancla</em>.<br>Recupera tu rumbo.</h1>
+      <p class="sub">Terapia online con 4 psicólogos sanitarios colegiados. Siempre el mismo profesional contigo — no eres un ticket en una plataforma de miles.</p>
+      <div class="hero-ctas">
+        <a href="#contacto" class="btn btn-primary">Reserva tu primera sesión</a>
+        <a href="#equipo" class="btn btn-ghost">Conoce a los 4</a>
+      </div>
+      <div class="hero-badges">
+        <span class="hbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Garantía firmada de devolución</span>
+        <span class="hbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/></svg>Psicólogos sanitarios colegiados</span>
+        <span class="hbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 12l2 2 4-4"/></svg>Adheridos al COP</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hv-panel">
+        <div class="hv-top">
+          <div class="hv-avatar">DV</div>
+          <div>
+            <b>David V.*</b>
+            <span>Psicólogo General Sanitario</span>
+          </div>
+          <span class="hv-tag">Tu psicólogo</span>
+        </div>
+        <div class="hv-progress">
+          <div class="row"><span>Tu proceso · Método ANCLA*</span><span>Fase 2 de 4</span></div>
+          <div class="bar"><i></i></div>
+        </div>
+        <div class="hv-steps">
+          <div class="s on">Análisis</div>
+          <div class="s on">Núcleo</div>
+          <div class="s">Cambio</div>
+          <div class="s">Alta</div>
+        </div>
+      </div>
+      <div class="hv-float">
+        <b>Sesión en ≤ 1 semana</b>
+        <span>Mismo profesional en cada cita.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="wrap">
+    <div class="item"><div class="num">+40 años</div><div class="lbl">de experiencia clínica combinada*</div></div>
+    <div class="item"><div class="num">4</div><div class="lbl">psicólogos sanitarios colegiados</div></div>
+    <div class="item"><div class="num">+1.500</div><div class="lbl">personas acompañadas*</div></div>
+    <div class="item"><div class="num">100%</div><div class="lbl">online, seguro y confidencial</div></div>
+  </div>
+</div>
+
+<!-- WEDGES -->
+<section class="wrap">
+  <div class="section-head center">
+    <div class="eyebrow center">Por qué Ancla y Mente</div>
+    <h2>Una boutique, no una plataforma</h2>
+    <p>Tres cosas que no encontrarás en las grandes plataformas de terapia online.</p>
+  </div>
+  <div class="wedges">
+    <div class="wedge">
+      <span class="num-tag">01</span>
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.4"/><path d="M3 19c0-3 2.7-5 6-5s6 2 6 5"/><path d="M15 19c0-2 1-3.5 3-3.5"/></svg></div>
+      <h3>4 humanos, siempre los mismos</h3>
+      <p>No te rotan entre miles de profesionales anónimos. Conoces a los 4, trabajas siempre con el tuyo y construyes una relación real.</p>
+    </div>
+    <div class="wedge">
+      <span class="num-tag">02</span>
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/></svg></div>
+      <h3>Garantía firmada</h3>
+      <p>Si tras las 3 primeras sesiones no sientes que esto es para ti, te devolvemos el 100%. Por escrito. Nadie más en España lo hace.</p>
+    </div>
+    <div class="wedge">
+      <span class="num-tag">03</span>
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></svg></div>
+      <h3>Un método propio</h3>
+      <p>No improvisamos. Seguimos el <b>Método ANCLA*</b>, un proceso estructurado en fases con objetivos claros desde la primera sesión.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="wrap" id="como">
+  <div class="section-head center">
+    <div class="eyebrow center">Sencillo desde el primer paso</div>
+    <h2>Cómo funciona</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="n">1</div>
+      <h3>Cuéntanos qué necesitas</h3>
+      <p>Un cuestionario breve y confidencial de 2 minutos. Sin compromiso y sin pagar nada todavía.</p>
+    </div>
+    <div class="step">
+      <div class="n">2</div>
+      <h3>Te asignamos a tu psicólogo</h3>
+      <p>Elegimos —en persona, no con un algoritmo— cuál de los 4 encaja mejor con tu caso y tus objetivos.</p>
+    </div>
+    <div class="step">
+      <div class="n">3</div>
+      <h3>Empieza tu proceso</h3>
+      <p>Primera sesión por videollamada, en una semana o menos. Mismo profesional en cada cita.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="equipo">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow center">El equipo</div>
+      <h2>Conoce a los 4</h2>
+      <p>Cuatro psicólogos sanitarios con nombre, cara y especialidad. Esta es toda la diferencia.</p>
+    </div>
+    <div class="team-grid">
+      <div class="psy">
+        <div class="ph">DV<span class="col">Col. M-00000*</span></div>
+        <div class="body">
+          <h3>David V.*</h3>
+          <div class="spec">Ansiedad y rendimiento</div>
+          <div class="cred"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/></svg>Psicólogo General Sanitario</div>
+          <br><a href="#">Ver perfil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="psy">
+        <div class="ph">MR<span class="col">Col. M-00000*</span></div>
+        <div class="body">
+          <h3>Mario R.*</h3>
+          <div class="spec">Depresión y autoestima</div>
+          <div class="cred"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/></svg>Psicólogo General Sanitario</div>
+          <br><a href="#">Ver perfil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="psy">
+        <div class="ph">LC<span class="col">Col. M-00000*</span></div>
+        <div class="body">
+          <h3>Laura C.*</h3>
+          <div class="spec">Pareja y vínculos</div>
+          <div class="cred"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/></svg>Psicóloga General Sanitaria</div>
+          <br><a href="#">Ver perfil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="psy">
+        <div class="ph">SG<span class="col">Col. M-00000*</span></div>
+        <div class="body">
+          <h3>Sara G.*</h3>
+          <div class="spec">Duelo y cambios vitales</div>
+          <div class="cred"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/></svg>Psicóloga General Sanitaria</div>
+          <br><a href="#">Ver perfil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="wrap" id="metodo">
+  <div class="method-grid">
+    <div class="method-intro">
+      <div class="eyebrow">Nuestra forma de trabajar</div>
+      <h2>El Método ANCLA*</h2>
+      <p>La mayoría de terapias online te emparejan con alguien y ya. Nosotros seguimos un proceso estructurado: sabes en qué fase estás, qué estamos trabajando y hacia dónde vamos desde el primer día.</p>
+      <p>No es terapia indefinida sin rumbo. Es un camino con objetivos, revisiones y resultados medibles.</p>
+    </div>
+    <div class="method-flow">
+      <div class="mf-head"><b>Del primer "no sé qué me pasa" al alta</b><span class="tag">4 fases</span></div>
+      <div class="mf-phase">
+        <div class="badge">A</div>
+        <div class="txt"><b>Análisis</b><span>Entendemos qué te trae y definimos objetivos concretos.</span></div>
+      </div>
+      <div class="mf-connector"></div>
+      <div class="mf-phase">
+        <div class="badge">N</div>
+        <div class="txt"><b>Núcleo</b><span>Trabajamos el origen, no solo el síntoma.</span></div>
+      </div>
+      <div class="mf-connector"></div>
+      <div class="mf-phase">
+        <div class="badge">C</div>
+        <div class="txt"><b>Cambio</b><span>Herramientas prácticas que aplicas en tu día a día.</span></div>
+      </div>
+      <div class="mf-connector"></div>
+      <div class="mf-phase">
+        <div class="badge">LA</div>
+        <div class="txt"><b>Logros y Alta</b><span>Consolidamos y te damos autonomía.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="wrap">
+    <div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+    <div>
+      <div class="eyebrow" style="color:var(--peach)">Garantía firmada · única en España</div>
+      <h2>3 sesiones o te devolvemos el 100%</h2>
+      <p>Confiamos tanto en nuestro método y en nuestro equipo que lo firmamos. Si tras tus tres primeras sesiones no sientes que Ancla y Mente es para ti, recuperas todo tu dinero. Sin letra pequeña.</p>
+    </div>
+    <div class="act">
+      <a href="#contacto" class="btn btn-peach">Empieza sin riesgo</a>
+      <small>Condiciones firmadas antes de empezar.</small>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCE STRIP -->
+<section class="evidence">
+  <div class="wrap">
+    <div class="section-head center" style="margin-bottom:42px">
+      <div class="eyebrow center">Confianza basada en evidencia</div>
+      <h2>Rigor clínico, resultados medibles</h2>
+    </div>
+    <div class="ev-grid">
+      <div class="ev">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 17l5-5 4 3 7-8"/><path d="M3 21h18"/></svg></div>
+        <div><b>Igual de eficaz*</b><span>La terapia online por videollamada es tan eficaz como la presencial para la mayoría de motivos de consulta (evidencia APA).</span></div>
+      </div>
+      <div class="ev">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div><b>Adheridos al COP*</b><span>Seguimos el Código de Buenas Prácticas en Telepsicología del Colegio Oficial de la Psicología.</span></div>
+      </div>
+      <div class="ev">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/><circle cx="12" cy="11" r="2"/><path d="M12 13v3"/></svg></div>
+        <div><b>Cifrado y confidencial</b><span>Plataforma de videollamada cifrada y secreto profesional sujeto al código deontológico.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="wrap">
+  <div class="section-head center">
+    <div class="eyebrow center">Lo que dicen quienes ya empezaron</div>
+    <h2>No estás solo en esto</h2>
+  </div>
+  <div class="tgrid">
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <p>"Llevaba meses dándole vueltas a empezar. Que fueran siempre la misma persona y no una plataforma enorme fue justo lo que necesitaba para confiar."</p>
+      <div class="who"><div class="av">C</div><div><b>Carla M.*</b><span>Madrid · 3 meses en terapia</span></div></div>
+    </div>
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <p>"La garantía me quitó el miedo a probar. A la tercera sesión ya tenía claro que seguía. No me he vuelto a plantear dejarlo."</p>
+      <div class="who"><div class="av">J</div><div><b>Jorge T.*</b><span>Valencia · 6 meses en terapia</span></div></div>
+    </div>
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <p>"Por fin un sitio donde sé en qué fase estoy y a dónde vamos. No es hablar por hablar, hay un método detrás."</p>
+      <div class="who"><div class="av">N</div><div><b>Nuria P.*</b><span>Sevilla · 4 meses en terapia</span></div></div>
+    </div>
+  </div>
+  <div class="media-logos">
+    <span>El País*</span><span>Forbes*</span><span>Vogue*</span><span>ABC*</span>
+  </div>
+  <p class="cop-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 12l2 2 4-4"/></svg>Adheridos al Código de Buenas Prácticas en Telepsicología del Colegio Oficial de la Psicología*</p>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="precios">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow center">Precios claros, sin sorpresas</div>
+      <h2>Elige cómo empezar</h2>
+      <p>Todas las opciones incluyen sesión de 50 min por videollamada, mismo psicólogo y acceso al Método ANCLA.</p>
+    </div>
+    <div class="pgrid">
+      <div class="plan">
+        <h3>Sesión suelta</h3>
+        <div class="price">79€<small> / sesión</small></div>
+        <div class="save">Sin permanencia</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 6"/></svg>50 minutos por videollamada</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 6"/></svg>Siempre tu mismo psicólogo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 6"/></svg>Cubierta por la garantía</li>
+        </ul>
+        <a href="#contacto" class="btn btn-ghost">Reservar</a>
+      </div>
+      <div class="plan feat">
+        <span class="pill">Más elegido</span>
+        <h3>Bono 4 sesiones</h3>
+        <div class="price">280€<small> / 4 sesiones</small></div>
+        <div class="save">Ahorras 36€ · 70€/sesión</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 6"/></svg>Todo lo del plan suelto</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 6"/></svg>Ideal para completar el Método ANCLA</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 6"/></svg>Flexibilidad para agendar a tu ritmo</li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary">Empezar ahora</a>
+      </div>
+      <div class="plan">
+        <h3>Bono 8 sesiones</h3>
+        <div class="price">520€<small> / 8 sesiones</small></div>
+        <div class="save">Ahorras 112€ · 65€/sesión</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 6"/></svg>El mejor precio por sesión</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 6"/></svg>Para procesos más profundos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 6"/></svg>Seguimiento continuado</li>
+        </ul>
+        <a href="#contacto" class="btn btn-ghost">Reservar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD MAGNET -->
+<section class="lead">
+  <div class="wrap lead-grid">
+    <div>
+      <div class="eyebrow">Gratis · descarga inmediata</div>
+      <h2>"7 señales de que tu mente te está pidiendo una pausa"*</h2>
+      <p>Una guía breve y práctica escrita por nuestros 4 psicólogos, con ejercicios que puedes empezar hoy. Déjanos tu email y te la enviamos al instante.</p>
+      <form onsubmit="event.preventDefault();this.querySelector('input').value='';this.nextElementSibling.style.display='block'">
+        <input type="email" placeholder="Tu correo electrónico" required>
+        <button class="btn btn-peach" type="submit">Quiero mi guía</button>
+      </form>
+      <div style="display:none;color:var(--peach);margin-top:14px;font-size:.9rem">✓ ¡Listo! (demo — en la web real se enviaría la guía)</div>
+      <div class="chk">Acepto la política de privacidad y recibir la newsletter. Puedes darte de baja cuando quieras.</div>
+    </div>
+    <div class="lead-visual">
+      <div class="doc">
+        <div class="ttl">7 señales de que tu mente te pide una pausa</div>
+        <div class="ln"></div>
+        <div class="ln"></div>
+        <div class="ln s"></div>
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/></svg>Escrita por los 4 psicólogos*</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="wrap">
+  <div class="section-head center">
+    <div class="eyebrow center">Resolvemos tus dudas</div>
+    <h2>Preguntas frecuentes</h2>
+  </div>
+  <div class="faq-list">
+    <details open><summary>¿Cómo funciona la garantía de devolución?</summary><p>Si después de tus 3 primeras sesiones sientes que esto no es para ti, nos lo dices y te devolvemos el 100% de lo pagado. Sin cuestionarios incómodos ni letra pequeña. Lo firmamos por escrito antes de empezar.</p></details>
+    <details><summary>¿La terapia online funciona igual que la presencial?</summary><p>Sí. La evidencia científica muestra que la terapia por videollamada es tan eficaz como la presencial para la mayoría de motivos de consulta. Además, te ahorra desplazamientos y te da más flexibilidad.</p></details>
+    <details><summary>¿Puedo elegir psicólogo o me lo asignáis?</summary><p>Tras tu cuestionario inicial, te proponemos al profesional de los 4 que mejor encaja con tu caso. Si prefieres otro, o si no conectáis, puedes cambiar sin coste.</p></details>
+    <details><summary>¿Es confidencial y seguro?</summary><p>Totalmente. Trabajamos con plataformas de videollamada cifradas y estamos sujetos al secreto profesional y al código deontológico del Colegio Oficial de la Psicología.</p></details>
+    <details><summary>¿Qué necesito para la sesión?</summary><p>Un dispositivo con cámara y conexión a internet, y un lugar tranquilo donde sentirte cómodo. Nada más.</p></details>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="contacto">
+  <div class="wrap">
+    <div class="eyebrow center">Da el primer paso</div>
+    <h2>Tu ancla está a una conversación de distancia</h2>
+    <p>Empieza hoy con la tranquilidad de la garantía firmada. Sin compromiso y sin riesgo.</p>
+    <a href="#" class="btn btn-primary" style="font-size:1.02rem;padding:16px 38px">Reserva tu primera sesión</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.2V21"/><path d="M5 12H19"/><path d="M5 12a7 7 0 0 0 14 0"/></svg></span>
+          Ancla y Mente
+        </div>
+        <p style="font-size:.9rem;max-width:24em">Boutique de psicología online. 4 psicólogos sanitarios, un método propio y una garantía que firmamos.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <a href="#como">Cómo funciona</a>
+        <a href="#equipo">Los 4 psicólogos</a>
+        <a href="#metodo">El método</a>
+        <a href="#precios">Precios</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="#">WhatsApp*</a>
+        <a href="#">hola@anclaymente.es*</a>
+        <a href="#">+34 600 000 000*</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Garantía (condiciones)</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Ancla y Mente* · Psicología online en España</span>
+      <span>Adheridos al Código de Buenas Prácticas en Telepsicología del COP*</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
