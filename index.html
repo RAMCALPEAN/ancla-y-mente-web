@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancla y Mente — Borradores de web (elige una)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#16263f;--sand:#e9ddcd;--cream:#faf6f0;--terra:#c2724f;--terra-dark:#a85e3f;--muted:#6a6258;--line:#e7ddcf}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;background:linear-gradient(170deg,#fbf8f3,var(--sand));color:#2a2a2a;min-height:100vh;line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:56px 24px 80px}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;color:var(--navy);letter-spacing:-.01em}
+  .logo{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-size:1.4rem;color:var(--navy);font-weight:600;justify-content:center;margin-bottom:30px}
+  .logo svg{width:32px;height:32px}
+  .head{text-align:center;max-width:34em;margin:0 auto 14px}
+  .head h1{font-size:2.8rem;margin-bottom:14px}
+  .head p{color:var(--muted);font-size:1.1rem}
+  .note{text-align:center;font-size:.85rem;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 20px;max-width:40em;margin:24px auto 0}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:46px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:.2s;text-decoration:none;color:inherit}
+  .card:hover{transform:translateY(-5px);box-shadow:0 24px 50px -28px rgba(22,38,63,.45)}
+  .swatch{height:120px;display:flex;align-items:flex-end;padding:14px;gap:7px}
+  .swatch span{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.7)}
+  .a .swatch{background:linear-gradient(135deg,#16263f,#34506f)}
+  .b .swatch{background:linear-gradient(135deg,#2f4a3e,#6f8d7a)}
+  .c .swatch{background:linear-gradient(135deg,#cf6b4a,#e0a23c)}
+  .body{padding:24px;flex:1;display:flex;flex-direction:column}
+  .tag{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:8px}
+  .card h3{font-size:1.35rem;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:.92rem;flex:1;margin-bottom:18px}
+  .open{display:inline-flex;align-items:center;gap:7px;color:var(--navy);font-weight:600;font-size:.92rem}
+  .open svg{width:16px;height:16px}
+  .card:hover .open{color:var(--terra)}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;margin-top:50px}
+  @media(max-width:780px){.grid{grid-template-columns:1fr}.head h1{font-size:2.1rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.2V21"/><path d="M5 12H19"/><path d="M5 12a7 7 0 0 0 14 0"/></svg>
+    Ancla y Mente
+  </div>
+  <div class="head">
+    <h1>Tres ideas para nuestra web</h1>
+    <p>Mismo contenido y estructura en las tres — solo cambia el estilo visual. Echadles un vistazo y decidme cuál os encaja más.</p>
+  </div>
+  <div class="note">⚠️ Son <b>borradores de ejemplo</b>: los nombres de los psicólogos, las fotos, el nombre del método y los números son provisionales. Lo que importa ahora es elegir la dirección de diseño.</div>
+
+  <div class="grid">
+    <a class="card a" href="Ancla-y-Mente-variante-A-editorial.html">
+      <div class="swatch"><span style="background:#16263f"></span><span style="background:#e9ddcd"></span><span style="background:#c2724f"></span></div>
+      <div class="body">
+        <div class="tag">Variante A</div>
+        <h3>Editorial · boutique cálida</h3>
+        <p>Estilo revista premium: serif elegante, mucho espacio, tonos navy + arena + terracota. Transmite prestigio tranquilo.</p>
+        <span class="open">Ver variante A <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+    <a class="card b" href="Ancla-y-Mente-variante-B-clinica.html">
+      <div class="swatch"><span style="background:#2f4a3e"></span><span style="background:#e3ebe4"></span><span style="background:#e7b89a"></span></div>
+      <div class="body">
+        <div class="tag">Variante B</div>
+        <h3>Clínica moderna · confianza</h3>
+        <p>Limpia y estructurada: verde salvia + crema, foco en credenciales, método y eficacia. Transmite rigor y seriedad.</p>
+        <span class="open">Ver variante B <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+    <a class="card c" href="Ancla-y-Mente-variante-C-cercana.html">
+      <div class="swatch"><span style="background:#cf6b4a"></span><span style="background:#e0a23c"></span><span style="background:#7fa389"></span></div>
+      <div class="body">
+        <div class="tag">Variante C</div>
+        <h3>Cercana · humana</h3>
+        <p>Con personalidad: formas orgánicas, colores cálidos y vivos, copy emocional. Transmite calidez y conexión humana.</p>
+        <span class="open">Ver variante C <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+  <footer>Ancla y Mente · borradores de diseño · 2026</footer>
+</div>
+</body>
+</html>
